@@ -2,7 +2,6 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* addInfo(action) {
-    console.log('in addInfo', action.payload.avatar);
     try {
         const { avatar, firstName, lastName } = action.payload;
 
@@ -11,7 +10,7 @@ function* addInfo(action) {
         formData.append('firstName', firstName);
         formData.append('lastName', lastName);
 
-        // Send the formData to the server
+        // Send the formData to the server using a POST request
         yield axios.post('/api/profile', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',

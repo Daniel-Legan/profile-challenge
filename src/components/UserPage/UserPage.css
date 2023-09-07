@@ -1,0 +1,29 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    border: black 2px solid;
+    border-radius: 5px;
+    box-shadow: 10px 10px 5px #00acb0;
+}
+
+.profile-container img {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile-container button,
+.profile-container input {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.profile-container div {
+    width: 200px;
+    margin-top: 10px;
+}

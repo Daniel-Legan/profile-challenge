@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import './UserPage.css';
 
 function UserPage() {
   const dispatch = useDispatch();
-  
+
   const user = useSelector((store) => store.user); // "user" table
   const info = useSelector((store) => store.info.info); // "info" table
   const [avatar, setAvatar] = useState(null);
@@ -26,8 +27,6 @@ function UserPage() {
       setAvatar(info.image_data || null);
     }
   }, [info]);
-
-  console.log('info', info);
 
   // Function to handle file upload and create a blob
   const handleFileUpload = (event) => {
@@ -81,64 +80,54 @@ function UserPage() {
     }
   };
 
-
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      {/* From original template */}
+      {/* <h2>Welcome, {user.username}!</h2> */}
+      {/* <p>Your ID is: {user.id}</p> */}
 
       {Object.keys(info).length > 0 ? (
         isEditing ? (
-          <div>
-            <form
-              onSubmit={handleEditClick}
-            >
-              <img
-                src={imageUrl}
-                alt="Avatar"
-                style={{ maxWidth: '100px' }}
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
-              />
-              <input
-                required
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={handleFirstNameChange}
-              />
-              <input
-                required
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={handleLastNameChange}
-              />
-              <button>Save</button>
-              <button onClick={() => setIsEditing(false)}>Cancel</button>
-            </form>
-          </div>
+          <form className='profile-container' onSubmit={handleEditClick}>
+
+            <img src={imageUrl} alt="Avatar" />
+            <input type="file" accept="image/*" onChange={handleFileUpload} />
+
+            <input
+              required
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={handleFirstNameChange}
+            />
+            <input
+              required
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={handleLastNameChange}
+            />
+            <button className='btn'>Save</button>
+            <button className='btn' onClick={() => setIsEditing(false)}>Cancel</button>
+          </form>
         ) : (
-          <div>
+          <div className='profile-container'>
             <img
               src={imageUrl}
               alt="Avatar"
-              style={{ maxWidth: '100px' }}
             />
-            <p>First Name: {info.first_name}</p>
-            <p>Last Name: {info.last_name}</p>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <div>{info.first_name} {info.last_name}</div>
+            <div>
+              <button className='btn' onClick={() => setIsEditing(true)}>Edit</button>
+            </div>
           </div>
         )
       ) : (
-        <form
+        <form className='profile-container'
           onSubmit={handleSaveClick}
         >
-            <input
-              required
+          <input
+            required
             type="file"
             accept="image/*"
             onChange={handleFileUpload}
@@ -157,7 +146,7 @@ function UserPage() {
             value={lastName}
             onChange={handleLastNameChange}
           />
-          <button>Save</button>
+          <button className='btn'>Save</button>
         </form>
       )}
     </div>
