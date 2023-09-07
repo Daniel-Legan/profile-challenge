@@ -6,7 +6,7 @@ function UserPage() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user); // "user" table
-  const info = useSelector((store) => store.info.info); // "info" table
+  const info = useSelector((store) => store.info); // "info" table
   const [avatar, setAvatar] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

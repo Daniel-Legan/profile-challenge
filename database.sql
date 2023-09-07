@@ -1,12 +1,3 @@
-
-   
--- CREATE DATABASE "first-look"
-
-
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -14,8 +5,10 @@ CREATE TABLE "user" (
     "access_level" INT DEFAULT 0
 );
 
-CREATE TABLE "pets" (
+CREATE TABLE "info" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(80) NOT NULL,
+    "image_data" BYTEA NULL,
+    "first_name" VARCHAR (80) NOT NULL,
+    "last_name" VARCHAR (80) NOT NULL,
     "user_id" INT REFERENCES "user"
 );

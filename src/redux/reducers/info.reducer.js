@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux';
-
 const info = (state = {}, action) => {
     switch (action.type) {
         case 'SET_INFO':
             return action.payload;
+        case 'UNSET_INFO':
+            return {}; // Return the default state when 'UNSET_INFO' is dispatched
+        default:
+            return state;
     }
-    return state;
-}
+};
 
-export default combineReducers({
-    info
-});
+export default info;

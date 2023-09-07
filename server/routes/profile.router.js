@@ -24,7 +24,7 @@ router.post('/', rejectUnauthenticated, upload.single('image'), async (req, res)
         // Access the binary data from req.file.buffer
         const imageBuffer = req.file.buffer;
 
-        // Insert the binary data, firstName, and lastName into your database
+        // Insert the binary data, firstName, and lastName into database
         const SQLText =
             'INSERT INTO "info" (image_data, first_name, last_name, user_id) VALUES ($1, $2, $3, $4)';
         await pool.query(SQLText, [
@@ -52,7 +52,7 @@ router.put('/:id', rejectUnauthenticated, upload.single('image'), async (req, re
             imageBuffer = req.file.buffer;
         }
 
-        // Update the avatar image data, firstName, and lastName in your database
+        // Update the avatar image data, firstName, and lastName in database
         const SQLText = `
       UPDATE "info"
       SET image_data = COALESCE($1, image_data), first_name = $2, last_name = $3
